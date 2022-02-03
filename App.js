@@ -9,15 +9,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import Container from './components/Container';
+import Home from './screens/Home';
 
 
 const App = () => {
 
   
   return (
-    <Container>
-
-    </Container>
+    <Home/>
   );
 };
 
