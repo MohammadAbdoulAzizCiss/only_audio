@@ -7,18 +7,10 @@
  */
 
 import React from 'react';
-import { View } from 'react-native';
-import Container from './components/Container';
-import Home from './screens/Home';
-
+import OTPScreen from './screens/Otp';
 
 const App = () => {
-
-  
-  return (
-    <Home/>
-  );
+  return <OTPScreen />;
 };
-
 
 export default App;
