@@ -7,10 +7,11 @@
  */
 
 import React from 'react';
+import Home from './screens/Home';
 import OTPScreen from './screens/Otp';
 
 const App = () => {
-  return <OTPScreen />;
+  return <Home/>;
 };
 
 export default App;
