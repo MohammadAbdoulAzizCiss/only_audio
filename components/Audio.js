@@ -3,6 +3,7 @@ import {TouchableOpacity, View} from 'react-native';
 import {BLUE, GRAY, WHITE} from '../colors';
 import BluePlay from '../assets/blue_play.svg';
 import WhitePlay from '../assets/white_play.svg';
+import Check from "../assets/check_circle.svg"
 import {Slider} from '@miblanchard/react-native-slider';
 
 export default function Audio({inverted}) {
@@ -32,7 +33,7 @@ export default function Audio({inverted}) {
       <TouchableOpacity>
         {inverted ? <WhitePlay height="80" /> : <BluePlay height="80" /> }
       </TouchableOpacity>
-      <View style={{flex: 1, width: 100, marginLeft: 10}}>
+      <View style={{flex: 1, marginLeft: 10}}>
         <Slider
           maximumTrackTintColor={GRAY}
           minimumTrackTintColor={GRAY}
@@ -40,6 +41,9 @@ export default function Audio({inverted}) {
           trackStyle={{backgroundColor: GRAY}}
         />
       </View>
+      {!inverted && <View style={{width: 40, alignItems: "center"}}>
+        <Check/>
+      </View>}
     </View>
   );
 }
