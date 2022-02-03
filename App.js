@@ -8,9 +8,9 @@
 
 import React from 'react';
 import OTPScreen from './screens/Otp';
-
+import Sign from './screens/Sign';
 const App = () => {
-  return <OTPScreen />;
+  return <Sign />;
 };
 
 export default App;
