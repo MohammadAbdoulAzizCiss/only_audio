@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { LESS_BLUE } from '../colors';
 
 export default function Container() {
-  return <View style={{backgroundColor: LESS_BLUE}}>
+  return <View style={{backgroundColor: LESS_BLUE, flex: 1}}>
 
 
   </View>;
