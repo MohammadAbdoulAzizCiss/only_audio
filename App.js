@@ -9,9 +9,10 @@
 import React from 'react';
 import Home from './screens/Home';
 import OTPScreen from './screens/Otp';
+import Chat from './screens/Chat';
 
 const App = () => {
-  return <Home/>;
+  return <Chat/>;
 };
 
 export default App;
