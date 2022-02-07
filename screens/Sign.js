@@ -1,11 +1,18 @@
 import React, {useState} from 'react';
-import {Text, StyleSheet, View, TextInput, Button} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import Container from '../components/Container';
 import Logo from '../assets/onlyAudio.svg';
-import {WHITE} from '../colors';
+import {WHITE, BLUE} from '../colors';
+import auth from '@react-native-firebase/auth';
 
 const OTPScreen = () => {
-  const [text, onChangeText] = React.useState('Useless Text');
+  const [number, setNumber] = React.useState('');
   const styles = StyleSheet.create({
     otp__display: {
       margin: 60,
@@ -20,23 +27,56 @@ const OTPScreen = () => {
       textAlign: 'center',
     },
   });
+  async function signInWithPhoneNumber(phoneNumber) {
+    try {
+      const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+      console.log(phoneNumber);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <Container>
       <View style={styles.otp__display}>
         <Logo width={182} height={70} />
         <Text style={styles.otp__text}>Authentifiez vous pour continuer</Text>
       </View>
-      <View style={{flex: 2, alignItems: 'center'}}>
+      <View
+        style={{
+          flex: 4,
+          alignItems: 'center',
+          width: '80%',
+          alignSelf: 'center',
+        }}>
         <Text style={{margin: 20, fontSize: 22, fontWeight: 'bold'}}>
-          Numero de telephone
+          Numéro de téléphone
         </Text>
-        <TextInput style={{width: '80%', backgroundColor: WHITE}} />
-        <Button
-          style={{width: '80%'}}
-          title="Learn More"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
+        <TextInput
+          style={{
+            width: '100%',
+            backgroundColor: WHITE,
+            marginBottom: 40,
+            fontSize: 18,
+            fontWeight: 'bold',
+          }}
+          value={number}
+          onChangeText={setNumber}
+          keyboardType="phone-pad"
         />
+        <TouchableOpacity
+          style={{
+            backgroundColor: BLUE,
+            width: '100%',
+            height: 51,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onPress={() => signInWithPhoneNumber(number)}>
+          <Text style={{color: WHITE, fontWeight: 'bold', fontSize: 18}}>
+            CONTINUER
+          </Text>
+        </TouchableOpacity>
       </View>
     </Container>
   );

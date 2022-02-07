@@ -1,28 +1,26 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import Home from './screens/Home';
 import OTPScreen from './screens/Otp';
-<<<<<<< HEAD
 import Sign from './screens/Sign';
-const App = () => {
-<<<<<<< HEAD
-  return <Sign />;
-=======
-  return <Home/>;
->>>>>>> 59d7be7f3cd452bcc2e7de2000a4d9e653c5cf23
-=======
 import Chat from './screens/Chat';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const App = () => {
-  return <Chat/>;
->>>>>>> 41ed1164b1465cfdeab0b59e388226d10bd8fd91
+  const Stack = createNativeStackNavigator();
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="OTP" component={OTPScreen} />
+        <Stack.Screen name="SIGN" component={Sign} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
 export default App;

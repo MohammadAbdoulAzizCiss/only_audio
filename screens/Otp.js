@@ -41,6 +41,9 @@ const OTPScreen = () => {
             padding: 10,
             backgroundColor: WHITE,
             borderRadius: 10,
+            fontWeight: 'bold',
+            fontSize: 20,
+            textAlign: 'center',
           }}
         />
       </View>

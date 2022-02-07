@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "502448270097",
+    "project_id": "onlyaudio-78342",
+    "storage_bucket": "onlyaudio-78342.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502448270097:android:815ff5fdeda714d89bfab0",
+        "android_client_info": {
+          "package_name": "com.onlyaudio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502448270097-t4ek97d1t9rcvpenb1rp2710mb2kp6g6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6yasupJdZK4KBKDa3EO4TYynCJOJz-Wc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502448270097-t4ek97d1t9rcvpenb1rp2710mb2kp6g6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
