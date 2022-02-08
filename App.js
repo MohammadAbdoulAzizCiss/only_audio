@@ -3,6 +3,7 @@ import Home from './screens/Home';
 import OTPScreen from './screens/Otp';
 import Sign from './screens/Sign';
 import Chat from './screens/Chat';
+import Discussions from './screens/Discussions';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -16,8 +17,10 @@ const App = () => {
           headerShown: false,
         }}>
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="OTP" component={OTPScreen} />
-        <Stack.Screen name="SIGN" component={Sign} />
+        <Stack.Screen name="Otp" component={OTPScreen} />
+        <Stack.Screen name="Sign" component={Sign} />
+        <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="Discussions" component={Discussions} />
       </Stack.Navigator>
     </NavigationContainer>
   );

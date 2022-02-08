@@ -5,7 +5,8 @@ import Logo from '../assets/onlyAudio.svg';
 import OtpInputs from 'react-native-otp-inputs';
 import {WHITE} from '../colors';
 
-const OTPScreen = () => {
+const OTPScreen = ({navigation, route}) => {
+  const {confirmation} = route.params;
   const styles = StyleSheet.create({
     otp__display: {
       margin: 60,
@@ -24,15 +25,26 @@ const OTPScreen = () => {
       flexDirection: 'row',
     },
   });
+
+  async function confirmCode(code) {
+    try {
+      await confirmation.confirm(code);
+      navigation.navigate('Discussions');
+    } catch (error) {
+      console.log('Invalid code.');
+    }
+  }
+
   return (
     <Container>
       <View style={styles.otp__display}>
         <Logo width={182} height={70} />
         <Text style={styles.otp__text}>Saisissez le code reçu par sms</Text>
-
         <OtpInputs
           style={styles.shadowProp}
-          handleChange={code => console.log(code)}
+          handleChange={code =>
+            code.length === 6 ? confirmCode(code) : console.log('not yet')
+          }
           numberOfInputs={6}
           keyboardType="phone-pad"
           autoFocus

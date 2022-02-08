@@ -11,7 +11,7 @@ import Logo from '../assets/onlyAudio.svg';
 import {WHITE, BLUE} from '../colors';
 import auth from '@react-native-firebase/auth';
 
-const OTPScreen = () => {
+const OTPScreen = ({navigation}) => {
   const [number, setNumber] = React.useState('');
   const styles = StyleSheet.create({
     otp__display: {
@@ -30,7 +30,7 @@ const OTPScreen = () => {
   async function signInWithPhoneNumber(phoneNumber) {
     try {
       const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-      console.log(phoneNumber);
+      navigation.navigate('Otp', {confirmation});
     } catch (error) {
       console.log(error);
     }
