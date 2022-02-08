@@ -6,7 +6,7 @@ import Logo from '../assets/onlyAudio.svg';
 import {BLUE} from '../colors';
 import Play from '../assets/play_arrow.svg';
 
-export default function Home() {
+export default function Home({navigation}) {
   return (
     <Container>
       <View
@@ -19,7 +19,7 @@ export default function Home() {
           }}>
           <Audio width="100" />
           <Logo />
-          <Text style={{fontSize: 12, marginTop: 20}}>
+          <Text style={{fontSize: 18, marginTop: 20}}>
             let's keep it <Text style={{color: BLUE}}>human</Text>{' '}
           </Text>
         </View>
@@ -33,7 +33,8 @@ export default function Home() {
             bottom: 30,
             alignItems: 'center',
             justifyContent: 'center',
-          }}>
+          }}
+          onPress={() => navigation.navigate('Sign')}>
           <Play />
         </TouchableOpacity>
       </View>
