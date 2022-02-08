@@ -10,6 +10,7 @@ import Draggable from 'react-native-draggable';
 export default function Chat() {
   const scrollRef = useRef();
   const [btnSize, setBtnSize] = useState(60);
+  const [audio,setAudio] = useState(null)
   return (
     <Container>
       <View
