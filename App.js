@@ -16,10 +16,10 @@ const App = () => {
         screenOptions={{
           headerShown: false,
         }}>
+        <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Otp" component={OTPScreen} />
         <Stack.Screen name="Sign" component={Sign} />
-        <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Discussions" component={Discussions} />
       </Stack.Navigator>
     </NavigationContainer>

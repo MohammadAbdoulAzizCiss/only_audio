@@ -1,16 +1,91 @@
 import React, {useRef, useState} from 'react';
-import {Dimensions, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {Button, Dimensions, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {BLUE, LESS_BLUE} from '../colors';
 import Audio from '../components/Audio';
 import Container from '../components/Container';
 import Mic from '../assets/mic.svg';
 import Back from '../assets/back.svg';
 import Draggable from 'react-native-draggable';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+
+const audioRecorderPlayer = new AudioRecorderPlayer();
 
 export default function Chat() {
   const scrollRef = useRef();
   const [btnSize, setBtnSize] = useState(60);
   const [audio,setAudio] = useState(null)
+
+  const onStartRecord = async () => {
+    console.log("starting record");
+    try {
+      const result = await audioRecorderPlayer.startRecorder();
+      audioRecorderPlayer.addRecordBackListener((e) => {
+        console.log('Recording . . . ', e.current_position);
+        
+        setAudio({
+          recordSecs: e.currentPosition,
+          recordTime: audioRecorderPlayer.mmssss(
+            Math.floor(e.currentPosition),
+          ),
+        });
+        return;
+      });
+      console.log(result);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  const onStopRecord = async () => {
+    console.log("stoping record");
+
+    try {
+      const result = await audioRecorderPlayer.stopRecorder();
+      audioRecorderPlayer.removeRecordBackListener();
+      setAudio({
+        ...audio,
+        recordSecs: 0,
+      });
+      console.log(result);
+      
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const onStartPlay = async () => {
+
+    console.log('onStartPlay')
+    try {
+      const msg = await audioRecorderPlayer.startPlayer();
+      console.log(msg);
+      audioRecorderPlayer.addPlayBackListener((e) => {
+        setAudio({
+          ...audio,
+          currentPositionSec: e.currentPosition,
+          currentDurationSec: e.duration,
+          playTime: audioRecorderPlayer.mmssss(Math.floor(e.currentPosition)),
+          duration: audioRecorderPlayer.mmssss(Math.floor(e.duration)),
+        });
+        return;
+      });
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  const onPausePlay = async () => {
+    await audioRecorderPlayer.pausePlayer();
+  };
+  
+  const onStopPlay = async () => {
+    console.log('onStopPlay');
+    audioRecorderPlayer.stopPlayer();
+    audioRecorderPlayer.removePlayBackListener();
+  };
+
   return (
     <Container>
       <View
@@ -48,7 +123,8 @@ export default function Chat() {
         <Audio />
         <Audio inverted />
       </ScrollView>
-
+      <Button title='play' onPress={onStartPlay} />
+          <Button title='Stop' onPress={onStopPlay} />
       <View
         style={{
           height: 80,
@@ -65,8 +141,13 @@ export default function Chat() {
             >
             <TouchableOpacity
               activeOpacity={1}
-              onPressIn={() => setBtnSize(80)}
-              onPressOut={() => setBtnSize(60)}
+              onPressIn={() => {
+                
+                onStartRecord()
+                setBtnSize(80)}}
+              onPressOut={() => {
+                onStopRecord()
+                setBtnSize(60)}}
 
               style={{
                 width: btnSize,
@@ -79,7 +160,8 @@ export default function Chat() {
               <Mic />
             </TouchableOpacity>
           </Draggable>
-        </View>
+         
+        </View> 
       </View>
     </Container>
   );
